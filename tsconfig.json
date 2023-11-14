@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "target": "es2021",
+    "target": "es5",
     "lib": ["dom", "dom.iterable", "es2021"],
     "skipLibCheck": true,
     "esModuleInterop": true,

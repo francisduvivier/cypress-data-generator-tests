@@ -3,7 +3,7 @@
   "name": "cypress-data-generator-tests",
   "author": "Francis Duvivier",
   "license": "MIT",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@1.22.19",
   "volta": {
     "node": "20.9.0"
   },
