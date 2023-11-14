@@ -1,7 +1,42 @@
 {
+  "description": "A Cypress Test Automation example project",
   "name": "cypress-data-generator-tests",
+  "author": "Francis Duvivier",
+  "license": "MIT",
   "packageManager": "yarn@4.0.2",
   "volta": {
     "node": "20.9.0"
+  },
+  "scripts": {
+    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "eslint:fix": "eslint --fix && prettier \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
+    "types": "tsc --noEmit",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "yarn cypress:open",
+    "test:headless": "yarn cypress:run",
+    "test:api": "yarn cypress:run --spec 'cypress/tests/api/*'"
+  },
+  "dependencies": {
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^20.9.0",
+    "cypress": "^13.5.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "husky": "^8.0.3",
+    "prettier": "^3.1.0",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn types"
+    }
   }
 }
