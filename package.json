@@ -1,0 +1,7 @@
+{
+  "name": "cypress-data-generator-tests",
+  "packageManager": "yarn@4.0.2",
+  "volta": {
+    "node": "20.9.0"
+  }
+}
