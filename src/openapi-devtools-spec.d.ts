@@ -14,7 +14,7 @@ export interface paths {
         query?: {
           profession?: string;
           version?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {
@@ -75,7 +75,7 @@ export interface paths {
       parameters: {
         query?: {
           year?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {
@@ -106,7 +106,7 @@ export interface paths {
       parameters: {
         query?: {
           profession?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {
@@ -137,7 +137,7 @@ export interface paths {
       parameters: {
         query?: {
           date?: string;
-          amount?: string;
+          amount?: number;
           info?: string;
           adult?: string;
         };
@@ -169,8 +169,8 @@ export interface paths {
     get: {
       parameters: {
         query?: {
-          version?: string;
-          amount?: string;
+          version?: number;
+          amount?: number;
         };
       };
       responses: {
@@ -201,7 +201,7 @@ export interface paths {
       parameters: {
         query?: {
           plates?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {
@@ -263,7 +263,7 @@ export interface paths {
       parameters: {
         query?: {
           country?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {
@@ -325,7 +325,7 @@ export interface paths {
       parameters: {
         query?: {
           company?: string;
-          amount?: string;
+          amount?: number;
         };
       };
       responses: {

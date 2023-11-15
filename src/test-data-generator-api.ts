@@ -1,9 +1,13 @@
 import { paths } from './openapi-devtools-spec';
 
 export type ApiPath = keyof paths;
+type GetDef<P extends ApiPath> = paths[P]['get'];
 export type OkResponse<P extends ApiPath> =
-  paths[P]['get']['responses'][200]['content']['application/json'];
-export type OkUUIDResponse = OkResponse<'/Prod//uuid'>;
+  GetDef<P>['responses'][200]['content']['application/json'];
+type ApiPathsWithoutParams = '/Prod//iban' | '/Prod//prepare';
+export type ApiPathWithParams = Exclude<ApiPath, ApiPathsWithoutParams>;
+export type Params<P extends ApiPathWithParams> =
+  GetDef<P>['parameters']['query'];
 
 export const Options = {
   polisnummer: ['Fidea', 'Baloise'],
@@ -239,15 +243,3 @@ export const Options = {
     'Sweden',
   ],
 } as const;
-
-export const apis = {
-  uuid: {
-    path: '/Prod//uuid' as const,
-    paramGenerator: {
-      version: [1, 3, 4, 5] as const,
-      amount: Array(100)
-        .fill(undefined)
-        .map((_, index) => index + 1) as number[],
-    },
-  },
-};
