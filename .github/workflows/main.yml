@@ -75,7 +75,7 @@ jobs:
         with:
           build: yarn cypress info
           browser: chrome
-          record: true
+          record: false
           parallel: false
           group: 'API - Chrome'
           spec: cypress/tests/api/*
