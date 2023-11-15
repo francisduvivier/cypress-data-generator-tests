@@ -9,4 +9,4 @@ export const paramSamples = {
     nokValues: [0, -1, 101] as const,
     okValues: [1, 5, 100] as const,
   },
-};
+} as const;

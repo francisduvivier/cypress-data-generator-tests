@@ -1,13 +1,13 @@
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
-import { OkResponse, Params } from '../../../src/test-data-generator-api.ts';
+import { UuidOkReponse, UuidParams } from '../support-types';
 
 export const responseVerifiers = {
   okVerifier: (
-    params: Params<'/Prod//uuid'>,
-    response: Cypress.Response<OkResponse<'/Prod//uuid'>>
+    params: UuidParams,
+    response: Cypress.Response<UuidOkReponse>
   ) => {
     expect(response.status).to.eq(200);
-    const body = response.body as OkResponse<'/Prod//uuid'>;
+    const body = response.body as UuidOkReponse;
     const uuids = body?.uuids;
     expect(uuids?.length).to.eq(Number(params!.amount));
     for (const generatedUuid of uuids) {
@@ -16,8 +16,8 @@ export const responseVerifiers = {
     }
   },
   nokVerifier: (
-    params: Params<'/Prod//uuid'>,
-    response: Cypress.Response<OkResponse<'/Prod//uuid'>>
+    params: UuidParams,
+    response: Cypress.Response<UuidOkReponse>
   ) => {
     expect(response.status).to.eq(400); // Bad Status
   },
