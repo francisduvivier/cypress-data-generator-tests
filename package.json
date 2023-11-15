@@ -9,10 +9,10 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "lint": "eslint && prettier --check '**/**.{ts,js,tsx,json,md,yml}'",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint:fix": "eslint --fix",
-    "prettier:fix": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
+    "prettier:fix": "prettier --write '**/**.{ts,js,tsx,json,md,yml}'",
     "types": "tsc --noEmit",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",

@@ -3,7 +3,7 @@ name: Cypress Tests
 on:
   push:
     branches-ignore:
-      - "renovate/**"
+      - 'renovate/**'
 
 jobs:
   install:
@@ -52,14 +52,14 @@ jobs:
       - name: __e Dir
         run: ls /__e
 
-      - name: "UI Tests - Chrome"
+      - name: 'UI Tests - Chrome'
         uses: cypress-io/github-action@v6
         with:
           build: yarn cypress info
           browser: chrome
           record: true
           parallel: false
-          group: "UI - Chrome"
+          group: 'UI - Chrome'
           spec: cypress/tests/ui/*
           config-file: cypress.config.ts
         env:
@@ -69,4 +69,4 @@ jobs:
           # Recommended: pass the GitHub token lets this action correctly
           # determine the unique run id necessary to re-run the checks
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEBUG: "cypress:server:args"
+          DEBUG: 'cypress:server:args'
