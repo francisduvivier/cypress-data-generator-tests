@@ -1,8 +1,11 @@
-import { OkResponse, Params } from '../../src/test-data-generator-api.ts';
-import { apiDefinitions } from './api-definition.ts';
+import {
+  ApiPath,
+  OkResponse,
+  Params,
+} from '../../../src/test-data-generator-api.ts';
+import { paramSamples } from './uuid-param-samples.ts';
 
-const apiHelper = apiDefinitions.uuid;
-const apiPath = apiHelper.path;
+const apiPath: ApiPath = '/Prod//uuid';
 const apiUUIDUrl = `${Cypress.env('apiUrl')}${apiPath}`;
 
 /**
@@ -23,8 +26,8 @@ export function addVerifyCombinationsTests(
   for (const amount of amounts) {
     for (const version of versions) {
       const params = new URLSearchParams();
-      params.set(apiHelper.params.version.name, String(version));
-      params.set(apiHelper.params.amount.name, String(amount));
+      params.set(paramSamples.version.name, String(version));
+      params.set(paramSamples.amount.name, String(amount));
       const paramString = params.toString();
       it(`GET ${apiPath}?${paramString}`, () => {
         cy.request('GET', `${apiUUIDUrl}?${paramString}`).then(

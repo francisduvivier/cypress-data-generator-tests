@@ -1,7 +1,6 @@
-import { apiDefinitions } from '../../support/api-definition.ts';
-import { addVerifyCombinationsTests } from '../../support/uuid-validations.ts';
-
-const apiHelper = apiDefinitions.uuid;
+import { addVerifyCombinationsTests } from '../../support/uuid/uuid-verification-its.ts';
+import { paramSamples } from '../../support/uuid/uuid-param-samples.ts';
+import { responseVerifiers } from '../../support/uuid/uuid-response-verifier.ts';
 
 describe.only('UUID API', () => {
   before(() => {
@@ -10,9 +9,9 @@ describe.only('UUID API', () => {
   });
 
   context('Happy path', () => {
-    const amounts = apiHelper.params.amount.okValues;
-    const versions = apiHelper.params.version.okValues;
-    const verifier = apiHelper.okVerifier;
+    const amounts = paramSamples.amount.okValues;
+    const versions = paramSamples.version.okValues;
+    const verifier = responseVerifiers.okVerifier;
     addVerifyCombinationsTests(amounts, versions, verifier);
   });
 });

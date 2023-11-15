@@ -1,7 +1,6 @@
-import { apiDefinitions } from '../../support/api-definition.ts';
-import { addVerifyCombinationsTests } from '../../support/uuid-validations.ts';
-
-const apiHelper = apiDefinitions.uuid;
+import { addVerifyCombinationsTests } from '../../support/uuid/uuid-verification-its.ts';
+import { paramSamples } from '../../support/uuid/uuid-param-samples.ts';
+import { responseVerifiers } from '../../support/uuid/uuid-response-verifier.ts';
 
 describe.only('UUID API', () => {
   before(() => {
@@ -11,21 +10,21 @@ describe.only('UUID API', () => {
 
   context('invalid input -> BUG -> Expected Failures', () => {
     context('invalid version', () => {
-      const options = apiHelper.params.amount.nokValues;
-      const versions = apiHelper.params.version.okValues;
-      const verifier = apiHelper.nokVerifier;
+      const options = paramSamples.amount.nokValues;
+      const versions = paramSamples.version.okValues;
+      const verifier = responseVerifiers.nokVerifier;
       addVerifyCombinationsTests(options, versions, verifier);
     });
     context('invalid amount', () => {
-      const amounts = apiHelper.params.amount.okValues;
-      const versions = apiHelper.params.version.nokValues;
-      const verifier = apiHelper.nokVerifier;
+      const amounts = paramSamples.amount.okValues;
+      const versions = paramSamples.version.nokValues;
+      const verifier = responseVerifiers.nokVerifier;
       addVerifyCombinationsTests(amounts, versions, verifier);
     });
     context('all params invalid', () => {
-      const amounts = apiHelper.params.amount.nokValues;
-      const versions = apiHelper.params.version.nokValues;
-      const verifier = apiHelper.nokVerifier;
+      const amounts = paramSamples.amount.nokValues;
+      const versions = paramSamples.version.nokValues;
+      const verifier = responseVerifiers.nokVerifier;
       addVerifyCombinationsTests(amounts, versions, verifier);
     });
   });
