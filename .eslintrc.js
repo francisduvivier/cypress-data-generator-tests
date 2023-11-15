@@ -21,5 +21,10 @@ module.exports = {
     'comma-dangle': 0,
     'no-restricted-syntax': 0,
   },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
   root: true,
 };
