@@ -1,16 +1,16 @@
-import { isMobile } from "../../support/utils";
+import { isMobile } from '../../support/utils.ts';
 
-describe("New Transaction", function () {
-  it("loads the page", function () {
-    cy.wait("head").should("be.visible");
+describe('New Transaction', () => {
+  it('loads the page', () => {
+    cy.get('head').should('not.be.visible');
   });
-  it("should not be mobile", function () {
+  it('should not be mobile', () => {
     expect(isMobile()).to.be.false;
   });
-  context("Opens random data generator TODO_RDG_TITLE", function () {
-    beforeEach(function () {});
-    it(function () {
-      cy.wait("body").should("be.visible");
+  context('Opens random data generator TODO_RDG_TITLE', () => {
+    beforeEach(() => {});
+    it('Should be able to check the body element', () => {
+      cy.get('body').should('be.visible');
     });
   });
 });
