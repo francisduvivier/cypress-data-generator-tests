@@ -353,6 +353,12 @@ export interface paths {
      * @description **Host**: http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com
      */
     get: {
+      parameters: {
+        query?: {
+          iban?: string;
+          amount?: number;
+        };
+      };
       responses: {
         200: {
           headers: {
@@ -396,6 +402,69 @@ export interface paths {
               plates: string[];
               phoneNumber: string[];
               iban: string[];
+            };
+          };
+        };
+      };
+    };
+  };
+  '/Prod//bis': {
+    /**
+     * /Prod//bis
+     * @description **Host**: http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com
+     */
+    get: {
+      parameters: {
+        query?: {
+          isGenderKnown?: string;
+          isBirthdateKnown?: string;
+          date?: string;
+          amount?: number;
+        };
+      };
+      responses: {
+        200: {
+          headers: {
+            'x-amz-apigw-id'?: string;
+            'x-amz-cf-id'?: string;
+            'x-amz-cf-pop'?: string;
+            'x-amzn-requestid'?: string;
+            'x-amzn-trace-id'?: string;
+            'x-cache'?: string;
+          };
+          content: {
+            'application/json': {
+              bis: string[];
+            };
+          };
+        };
+      };
+    };
+  };
+  '/Prod//bsn': {
+    /**
+     * /Prod//bsn
+     * @description **Host**: http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com
+     */
+    get: {
+      parameters: {
+        query?: {
+          amount?: number;
+        };
+      };
+      responses: {
+        200: {
+          headers: {
+            'x-amz-apigw-id'?: string;
+            'x-amz-cf-id'?: string;
+            'x-amz-cf-pop'?: string;
+            'x-amzn-requestid'?: string;
+            'x-amzn-trace-id'?: string;
+            'x-cache'?: string;
+          };
+          content: {
+            'application/json': {
+              bsns: string[];
             };
           };
         };
