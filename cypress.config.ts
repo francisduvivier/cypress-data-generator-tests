@@ -10,6 +10,7 @@ module.exports = defineConfig({
     runMode: 2,
   },
   env: {
+    apiUrl: 'http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com',
     coverage: false,
     paginationPageSize: process.env.PAGINATION_PAGE_SIZE,
   },
