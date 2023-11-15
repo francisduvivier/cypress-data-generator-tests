@@ -7,6 +7,6 @@ export const paramSamples = {
   amount: {
     name: 'amount',
     nokValues: [0, -1, 101] as const,
-    okValues: [1, 5, 100],
+    okValues: [1, 5, 100] as const,
   },
 };
