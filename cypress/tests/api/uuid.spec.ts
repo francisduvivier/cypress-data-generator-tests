@@ -1,8 +1,5 @@
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
-import {
-  apis,
-  OkUUIDResponse,
-} from '../../../types/test-data-generator-api.ts';
+import { apis, OkUUIDResponse } from '../../../src/test-data-generator-api.ts';
 
 const apiHelper = apis.uuid;
 const apiPath = apiHelper.path;
