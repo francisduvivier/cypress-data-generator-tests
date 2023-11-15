@@ -18,7 +18,8 @@
     "cypress:run": "cypress run",
     "test": "yarn cypress:open",
     "test:headless": "yarn cypress:run",
-    "test:api": "yarn cypress:run --spec 'cypress/tests/api/*'"
+    "test:api": "yarn cypress:run --spec 'cypress/tests/api/*'",
+    "generate:api-types": "yarn openapi-typescript docs/openapi-devtools-spec.json -o types/openapi-devtools-spec.d.ts"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
@@ -39,6 +40,7 @@
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
+    "openapi-typescript": "^6.7.1",
     "prettier": "^3.1.0"
   }
 }
