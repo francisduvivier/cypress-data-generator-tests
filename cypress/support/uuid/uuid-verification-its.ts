@@ -1,9 +1,6 @@
-import {
-  ApiPath,
-  OkResponse,
-  Params,
-} from '../../../src/test-data-generator-api.ts';
+import { ApiPath } from '../../../src/test-data-generator-api.ts';
 import { paramSamples } from './uuid-param-samples.ts';
+import { UuidOkReponse, UuidParams } from '../support-types';
 
 const apiPath: ApiPath = '/Prod//uuid';
 const apiUUIDUrl = `${Cypress.env('apiUrl')}${apiPath}`;
@@ -18,9 +15,9 @@ export function addVerifyCombinationsTests(
   versions: readonly number[],
   verifier: (
     // eslint-disable-next-line no-unused-vars
-    params: Params<'/Prod//uuid'>,
+    params: UuidParams,
     // eslint-disable-next-line no-unused-vars
-    response: Cypress.Response<OkResponse<'/Prod//uuid'>>
+    response: Cypress.Response<UuidOkReponse>
   ) => void
 ) {
   for (const amount of amounts) {
@@ -31,7 +28,7 @@ export function addVerifyCombinationsTests(
       const paramString = params.toString();
       it(`GET ${apiPath}?${paramString}`, () => {
         cy.request('GET', `${apiUUIDUrl}?${paramString}`).then(
-          (response: Cypress.Response<OkResponse<'/Prod//uuid'>>) => {
+          (response: Cypress.Response<UuidOkReponse>) => {
             verifier({ version, amount }, response);
           }
         );
