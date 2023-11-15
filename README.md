@@ -13,13 +13,17 @@ Random data generator test suite for https://bignited.be/services/test-data-gene
 `yarn cypress:open`
 
 ## How to develop
+
 ### Git hook setup
+
 `yarn prepare`
+
 ### Linting Check
 
 `yarn lint`
 
 ### Fix lint issues
+
 `yarn lint:fix`
 
 ## Credits
