@@ -6,11 +6,11 @@ const apiPath = apiHelper.path;
 const apiUUIDUrl = `${Cypress.env('apiUrl')}${apiPath}`;
 
 /**
- * @function verifyCombinations
+ * @function addVerifyCombinationsTests
  * This function creates it cases to verify that the combinations of the given
  * inputs will have a correct response according to the verifier function.
  */
-export function verifyCombinations(
+export function addVerifyCombinationsTests(
   amounts: readonly number[],
   versions: readonly number[],
   verifier: (

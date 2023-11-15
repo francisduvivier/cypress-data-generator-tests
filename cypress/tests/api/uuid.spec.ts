@@ -1,5 +1,5 @@
 import { apiDefinitions } from '../../support/api-definition.ts';
-import { verifyCombinations } from '../../support/uuid-validations.ts';
+import { addVerifyCombinationsTests } from '../../support/uuid-validations.ts';
 
 const apiHelper = apiDefinitions.uuid;
 
@@ -13,6 +13,6 @@ describe.only('UUID API', () => {
     const amounts = apiHelper.params.amount.okValues;
     const versions = apiHelper.params.version.okValues;
     const verifier = apiHelper.okVerifier;
-    verifyCombinations(amounts, versions, verifier);
+    addVerifyCombinationsTests(amounts, versions, verifier);
   });
 });
