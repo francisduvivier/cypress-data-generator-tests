@@ -38,3 +38,39 @@ export const apiDefinitions = {
     },
   },
 };
+
+/**
+ * @function verifyCombinations
+ * This function creates it cases to verify that the combinations of the given
+ * inputs will have a correct response according to the verifier function.
+ */
+export function verifyCombinations(
+  amounts: readonly number[],
+  versions: readonly number[],
+  verifier: (
+    // eslint-disable-next-line no-unused-vars
+    params: Params<'/Prod//uuid'>,
+    // eslint-disable-next-line no-unused-vars
+    response: Cypress.Response<OkResponse<'/Prod//uuid'>>
+  ) => void,
+  versionParamName: string,
+  amountParamName: string,
+  apiPath: string,
+  apiUUIDUrl: string
+) {
+  for (const amount of amounts) {
+    for (const version of versions) {
+      const params = new URLSearchParams();
+      params.set(versionParamName, String(version));
+      params.set(amountParamName, String(amount));
+      const paramString = params.toString();
+      it(`GET ${apiPath}?${paramString}`, () => {
+        cy.request('GET', `${apiUUIDUrl}?${paramString}`).then(
+          (response: Cypress.Response<OkResponse<'/Prod//uuid'>>) => {
+            verifier({ version, amount }, response);
+          }
+        );
+      });
+    }
+  }
+}
