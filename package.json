@@ -8,6 +8,7 @@
     "node": "20.9.0"
   },
   "scripts": {
+    "prepare": "husky install",
     "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint:fix": "eslint --fix",
@@ -38,10 +39,5 @@
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "prettier": "^3.1.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:fix && yarn types"
-    }
   }
 }
