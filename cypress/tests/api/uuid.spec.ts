@@ -1,11 +1,7 @@
-import {
-  apiDefinitions,
-  verifyCombinations,
-} from '../../support/api-definition.ts';
+import { apiDefinitions } from '../../support/api-definition.ts';
+import { verifyCombinations } from '../../support/uuid-validations.ts';
 
 const apiHelper = apiDefinitions.uuid;
-const apiPath = apiHelper.path;
-const apiUUIDUrl = `${Cypress.env('apiUrl')}${apiPath}`;
 
 describe.only('UUID API', () => {
   before(() => {
@@ -17,14 +13,6 @@ describe.only('UUID API', () => {
     const amounts = apiHelper.params.amount.okValues;
     const versions = apiHelper.params.version.okValues;
     const verifier = apiHelper.okVerifier;
-    verifyCombinations(
-      amounts,
-      versions,
-      verifier,
-      apiHelper.params.version.name,
-      apiHelper.params.amount.name,
-      apiPath,
-      apiUUIDUrl
-    );
+    verifyCombinations(amounts, versions, verifier);
   });
 });

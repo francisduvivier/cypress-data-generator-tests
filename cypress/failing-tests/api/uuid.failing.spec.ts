@@ -1,11 +1,7 @@
-import {
-  apiDefinitions,
-  verifyCombinations,
-} from '../../support/api-definition.ts';
+import { apiDefinitions } from '../../support/api-definition.ts';
+import { verifyCombinations } from '../../support/uuid-validations.ts';
 
 const apiHelper = apiDefinitions.uuid;
-const apiPath = apiHelper.path;
-const apiUUIDUrl = `${Cypress.env('apiUrl')}${apiPath}`;
 
 describe.only('UUID API', () => {
   before(() => {
@@ -18,43 +14,19 @@ describe.only('UUID API', () => {
       const options = apiHelper.params.amount.nokValues;
       const versions = apiHelper.params.version.okValues;
       const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        options,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
+      verifyCombinations(options, versions, verifier);
     });
     context('invalid amount', () => {
       const amounts = apiHelper.params.amount.okValues;
       const versions = apiHelper.params.version.nokValues;
       const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        amounts,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
+      verifyCombinations(amounts, versions, verifier);
     });
     context('all params invalid', () => {
       const amounts = apiHelper.params.amount.nokValues;
       const versions = apiHelper.params.version.nokValues;
       const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        amounts,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
+      verifyCombinations(amounts, versions, verifier);
     });
   });
 });
