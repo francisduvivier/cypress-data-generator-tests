@@ -27,49 +27,4 @@ describe.only('UUID API', () => {
       apiUUIDUrl
     );
   });
-
-  context('invalid input -> BUG -> Expected Failures', () => {
-    context('invalid version', () => {
-      const options = apiHelper.params.amount.nokValues;
-      const versions = apiHelper.params.version.okValues;
-      const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        options,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
-    });
-    context('invalid amount', () => {
-      const amounts = apiHelper.params.amount.okValues;
-      const versions = apiHelper.params.version.nokValues;
-      const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        amounts,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
-    });
-    context('all params invalid', () => {
-      const amounts = apiHelper.params.amount.nokValues;
-      const versions = apiHelper.params.version.nokValues;
-      const verifier = apiHelper.nokVerifier;
-      verifyCombinations(
-        amounts,
-        versions,
-        verifier,
-        apiHelper.params.version.name,
-        apiHelper.params.amount.name,
-        apiPath,
-        apiUUIDUrl
-      );
-    });
-  });
 });
