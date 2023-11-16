@@ -63,9 +63,20 @@ describe('Bis Id UI Test Suite', () => {
       ).should('have.value', '5');
     });
     it('Should be able to select a date', () => {
-      // TODO implement
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
+      ).should('be.visible');
+      const date = paramSamples.date.okValues[0];
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
+      ).type(date);
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
+      ).then((item) => {
+        expect(item.val()).to.eq(date);
+      });
     });
-    it('Should be able to find the generate button', () => {
+    it('Should be able to use the generate button', () => {
       const buttonSelector = '#\\/' + generatorId + '-generate-button';
       cy.get(buttonSelector).should('be.visible');
       cy.get(buttonSelector).click();
