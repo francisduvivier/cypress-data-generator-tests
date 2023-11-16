@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "lint": "eslint && prettier --check \"**/**.{ts,js,tsx}\" \"*.{json,md,yml}\"",
+    "lint": "eslint && prettier --check '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint:fix": "eslint --fix",
     "prettier:fix": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
@@ -18,14 +18,17 @@
     "cypress:run": "cypress run",
     "test": "yarn cypress:open",
     "test:headless": "yarn cypress:run",
-    "test:api": "yarn cypress:run --spec 'cypress/tests/api/*'"
+    "test:api": "yarn cypress:run --spec 'cypress/tests/api/*'",
+    "generate:api-types": "yarn openapi-typescript docs/openapi-devtools-spec.json -o src/openapi-devtools-spec.d.ts"
   },
   "dependencies": {
     "@types/dotenv": "^8.2.0",
     "@types/node": "^20.9.0",
+    "@types/uuid": "^9.0.7",
     "cypress": "^13.5.1",
     "dotenv": "^16.3.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/eslint": "^8",
@@ -34,11 +37,13 @@
     "eslint": "^8.53.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
+    "openapi-typescript": "^6.7.1",
     "prettier": "^3.1.0"
   }
 }
