@@ -4,10 +4,19 @@ import {
   xPathForInputInForm,
   xPathForInputInFormDiv,
 } from '../../support/ui-utils.ts';
-import { BisParamName } from '../../support/support-types';
+import { BisParamName, BisParams } from '../../support/support-types';
 
 const { baseUrl } = Cypress.config();
 const generatorId = 'bis';
+
+const paramSetter: { [key in BisParamName]: (val: any) => unknown } = {
+  amount: setAmount,
+  date: setDate,
+  isGenderKnown: (val: boolean) =>
+    setBooleanParam(paramSamples.isGenderKnown, val),
+  isBirthdateKnown: (val: boolean) =>
+    setBooleanParam(paramSamples.isBirthdateKnown, val),
+} as const;
 
 // TODO Move setBooleanParam to commands
 function setBooleanParam(
@@ -49,7 +58,9 @@ function setAmount(value: number) {
   ).should('be.visible');
   cy.xpath(
     xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
-  ).type(String(value));
+  )
+    .clear()
+    .type(String(value));
   cy.xpath(
     xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
   ).should('have.value', String(value));
@@ -60,9 +71,15 @@ function setDate(date: '2000-11-15') {
   cy.xpath(
     xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
   ).should('be.visible');
-  cy.xpath(
-    xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
-  ).type(date);
+  if (date) {
+    cy.xpath(
+      xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
+    ).type(date);
+  } else {
+    cy.xpath(
+      xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
+    ).clear();
+  }
   cy.xpath(
     xPathForInputInFormDiv(paramSamples.date.name, 'date', generatorId)
   ).then((item) => {
@@ -78,6 +95,16 @@ function clickGenerate() {
   const textSelector = '#' + generatorId + '-text';
   cy.get(textSelector).should('be.visible');
   return textSelector;
+}
+
+function setValuesAndVerifyGenerate(paramsValues: NonNullable<BisParams>) {
+  for (const paramName of Object.keys(paramSetter) as BisParamName[]) {
+    paramSetter[paramName](paramsValues[paramName]);
+  }
+  const textSelector = clickGenerate();
+  cy.get(textSelector).should('not.be.empty');
+  // TODO Extend test to check amount in ui
+  // TODO Extend test to check api call made
 }
 
 describe('Bis Id UI Test Suite', () => {
@@ -116,9 +143,21 @@ describe('Bis Id UI Test Suite', () => {
     });
   });
   context('API interaction test suite', () => {
-    // TODO implement for okValues amount
-    // TODO implement for okValues of date
-    // TODO implement for okValues of isBirthdateKnown
-    // TODO implement for okValues of isGenderKnown
+    for (const varyingParam of Object.values(paramSamples)) {
+      context(`Test ${varyingParam.name} variation`, () => {
+        for (const value of varyingParam.okValues) {
+          it(`Should generate data when setting ${varyingParam.name} to ${value}`, () => {
+            const paramsValues = {
+              amount: paramSamples.amount.okValues[0],
+              date: paramSamples.date.okValues[0],
+              isGenderKnown: paramSamples.isGenderKnown.okValues[0],
+              isBirthdateKnown: paramSamples.isBirthdateKnown.okValues[0],
+            };
+            (paramsValues as any)[varyingParam.name] = value;
+            setValuesAndVerifyGenerate(paramsValues);
+          });
+        }
+      });
+    }
   });
 });
