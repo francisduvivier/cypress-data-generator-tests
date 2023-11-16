@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-import-module-exports
 import dotenv from 'dotenv';
-// eslint-disable-next-line import/no-import-module-exports
 import { defineConfig } from 'cypress';
 
 dotenv.config({ path: '.env.local' });
@@ -12,7 +10,7 @@ module.exports = defineConfig({
     runMode: 2,
   },
   env: {
-    apiUrl: 'http://127.0.0.1:3001',
+    apiUrl: 'http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com',
     coverage: false,
   },
   e2e: {
