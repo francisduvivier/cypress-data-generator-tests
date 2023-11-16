@@ -20,6 +20,8 @@ module.exports = {
     'comma-style': 0,
     'comma-dangle': 0,
     'no-restricted-syntax': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'no-plusplus': 0,
   },
   settings: {
     'import/resolver': {
