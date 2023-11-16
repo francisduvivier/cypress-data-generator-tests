@@ -98,12 +98,24 @@ function clickGenerate() {
 }
 
 function setValuesAndVerifyGenerate(paramsValues: NonNullable<BisParams>) {
-  for (const paramName of Object.keys(paramSetter) as BisParamName[]) {
-    paramSetter[paramName](paramsValues[paramName]);
-  }
-  const textSelector = clickGenerate();
-  cy.get(textSelector).should('not.be.empty');
-  // TODO Extend test to check amount in ui
+  const textSelector = '#' + generatorId + '-text';
+  cy.get(textSelector).then((textItem) => {
+    const startOutputValue = textItem.val();
+    for (const paramName of Object.keys(paramSetter) as BisParamName[]) {
+      paramSetter[paramName](paramsValues[paramName]);
+    }
+    clickGenerate();
+    cy.get(textSelector)
+      .should('not.be.empty')
+      .then((updatedTextItem) => {
+        const endOutput = updatedTextItem.text();
+        expect(startOutputValue).not.to.eq(endOutput);
+        expect(endOutput.split('\n')).to.have.length(
+          Number(paramsValues.amount)
+        );
+      });
+  });
+
   // TODO Extend test to check api call made
 }
 
