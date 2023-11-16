@@ -23,8 +23,7 @@ describe('Bis Id UI Test Suite', () => {
       paramSamples.isBirthdateKnown,
       paramSamples.isGenderKnown,
     ]) {
-      for (const choice of booleanParam.okValues.filter((v) => v)) {
-        // filter undefined
+      for (const choice of booleanParam.okValues) {
         const paramName = booleanParam.name;
         const inputType = `radio`;
         const choiceXpath = xPathForInput(paramName, inputType, choice);
