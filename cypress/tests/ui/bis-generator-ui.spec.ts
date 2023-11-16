@@ -1,6 +1,9 @@
 import '../../support/commands.ts';
 import { paramSamples } from '../../support/bis/bis-param-samples.ts';
-import { xPathForInput } from '../../support/ui-utils.ts';
+import {
+  xPathForInputInForm,
+  xPathForInputInFormDiv,
+} from '../../support/ui-utils.ts';
 
 const { baseUrl } = Cypress.config();
 const generatorId = 'bis';
@@ -25,10 +28,19 @@ describe('Bis Id UI Test Suite', () => {
     ]) {
       for (const choice of booleanParam.okValues) {
         const paramName = booleanParam.name;
-        const inputType = `radio`;
-        const choiceXpath = xPathForInput(paramName, inputType, choice);
+        const choiceXpath = xPathForInputInForm(
+          paramName,
+          `radio`,
+          generatorId,
+          choice
+        );
 
-        const otherChoiceXpath = xPathForInput(paramName, inputType, !choice);
+        const otherChoiceXpath = xPathForInputInForm(
+          paramName,
+          `radio`,
+          generatorId,
+          !choice
+        );
         it(`can set the ${paramName} toggle to ${choice}`, () => {
           cy.xpath(choiceXpath).click();
           cy.xpath(choiceXpath)
@@ -39,8 +51,16 @@ describe('Bis Id UI Test Suite', () => {
         });
       }
     }
-    it('Should be able to fill an amount a date', () => {
-      // TODO implement
+    it('Should be able to fill an amount', () => {
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
+      ).should('be.visible');
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
+      ).type('5');
+      cy.xpath(
+        xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
+      ).should('have.value', '5');
     });
     it('Should be able to select a date', () => {
       // TODO implement
