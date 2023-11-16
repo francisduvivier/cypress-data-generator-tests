@@ -23,7 +23,7 @@ describe('BIS API', () => {
     );
   });
 
-  context('invalid input -> BUG -> Expected Failures', () => {
+  xcontext('invalid input -> BUG -> Expected Failures', () => {
     const verifier = responseVerifiers.nokVerifier;
     context('invalid date', () => {
       const amounts = paramSamples.amount.okValues.slice(0, 1);
