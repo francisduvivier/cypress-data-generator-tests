@@ -1,12 +1,12 @@
 export const paramSamples = {
   isGenderKnown: {
     name: 'isGenderKnown',
-    okValues: [true, false, undefined] as const,
+    okValues: [true, false] as const,
     nokValues: [0, 'invalidInput'] as const,
   },
   isBirthdateKnown: {
     name: 'isBirthdateKnown',
-    okValues: [true, false, undefined] as const,
+    okValues: [true, false] as const,
     nokValues: [0, 'invalidInput'] as const,
   },
   date: {

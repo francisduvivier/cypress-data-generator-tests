@@ -2,7 +2,7 @@ import { addVerifyCombinationsTests } from '../../support/bis/bis-verification-i
 import { paramSamples } from '../../support/bis/bis-param-samples.ts';
 import { responseVerifiers } from '../../support/bis/bis-response-verifier.ts';
 
-xdescribe('BIS API', () => {
+describe('BIS API', () => {
   before(() => {
     // Advised workaround to have the e2e tests pass when cy.visit(baseUrl) is called
     cy.request('GET', '/');
@@ -23,7 +23,7 @@ xdescribe('BIS API', () => {
     );
   });
 
-  context('invalid input -> BUG -> Expected Failures', () => {
+  xcontext('invalid input -> BUG -> Expected Failures', () => {
     const verifier = responseVerifiers.nokVerifier;
     context('invalid date', () => {
       const amounts = paramSamples.amount.okValues.slice(0, 1);

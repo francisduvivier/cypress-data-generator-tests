@@ -16,7 +16,7 @@ export const responseVerifiers = {
         params!.isGenderKnown == null &&
         params!.date
       ) {
-        const reversedBirthDay = params!.date;
+        const reversedBirthDay = params!.date.slice(2);
         expect(
           generatedBis,
           'first part should be the birthday in reverse'
