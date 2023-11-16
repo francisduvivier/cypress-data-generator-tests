@@ -17,5 +17,12 @@ declare namespace Cypress {
       // eslint-disable-next-line no-unused-vars
       args?: any
     ): Chainable<JQuery<HTMLElement>>;
+
+    collapseGenerator(
+      // eslint-disable-next-line no-unused-vars
+      generatorId: string,
+      // eslint-disable-next-line no-unused-vars
+      args?: any
+    ): Chainable<JQuery<HTMLElement>>;
   }
 }

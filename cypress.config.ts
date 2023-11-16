@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-import-module-exports
 import dotenv from 'dotenv';
+// eslint-disable-next-line import/no-import-module-exports
 import { defineConfig } from 'cypress';
 
 dotenv.config({ path: '.env.local' });
