@@ -1,4 +1,5 @@
 import '../../support/commands.ts';
+import { paramSamples } from '../../support/bis/bis-param-samples.ts';
 
 const { baseUrl } = Cypress.config();
 const generatorId = 'bis';
@@ -17,23 +18,38 @@ describe('Bis Id UI Test Suite', () => {
       cy.collapseGenerator(generatorId);
     });
     // Test Radio button responsiveness for all radio buttons
-    for (let i = 0; i < 2; i++) {
-      const choices = ['yes', 'no'];
-      for (let choiceIndex = 0; choiceIndex < 2; choiceIndex++) {
-        const choice = choices[choiceIndex];
-        const choiceSelector = `[id="/bis-${choice}-${i}"]`;
-        const otherChoiceSelector = `[id="/bis-${
-          choices[(choiceIndex + 1) % 2]
-        }-${i}"]`;
-        it(`can set the ${i ? 'second' : 'first'} toggle to ${choice}`, () => {
-          cy.get(choiceSelector).click();
-          cy.get(choiceSelector).should('be.checked');
-          cy.get(otherChoiceSelector).should('not.be.checked');
+    for (const booleanParam of [
+      paramSamples.isBirthdateKnown,
+      paramSamples.isGenderKnown,
+    ]) {
+      for (const choice of booleanParam.okValues.filter((v) => v)) {
+        // filter undefined
+        const paramName = booleanParam.name;
+        const choiceXpath = `//form[contains(., "${paramName}")]//input[@type="radio" and @value="${choice}"]`;
+
+        const otherChoiceXpath = `//form[contains(., "${paramName}")]//input[@type="radio" and @value="${!choice}"]`;
+        it(`can set the ${paramName} toggle to ${choice}`, () => {
+          cy.xpath(choiceXpath).click();
+          cy.xpath(choiceXpath)
+            .should('exist') // You can use any Cypress assertions here
+            .click(); // For example, you can click on the radio button if needed
+          cy.xpath(choiceXpath).should('be.checked');
+          cy.xpath(otherChoiceXpath).should('not.be.checked');
         });
       }
     }
+    it('Should be able to select a date', () => {
+      // TODO implement
+    });
+    it('Should be able to find the generate button', () => {
+      // TODO implement
+    });
   });
   context('API interaction test suite', () => {
-    // TODO
+    // TODO implement
+    // TODO for okValues amount
+    // TODO for okValues of date
+    // TODO for okValues of isBirthdateKnown
+    // TODO for okValues of isGenderKnown
   });
 });
