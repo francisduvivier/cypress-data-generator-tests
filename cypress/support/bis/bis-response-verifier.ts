@@ -85,8 +85,13 @@ function expectBisToComplyWithSpec(
 }
 
 export const responseVerifiers = {
-  okVerifier: (params: BisParams, response: Cypress.Response<BisOkReponse>) => {
-    expect(response.status).to.eq(200);
+  okVerifier: (
+    params: BisParams,
+    response: Cypress.Response<BisOkReponse> | { body: BisOkReponse }
+  ) => {
+    if ((response as Cypress.Response<BisOkReponse>).status !== undefined) {
+      expect((response as Cypress.Response<BisOkReponse>).status).to.eq(200);
+    }
     const body = response.body as BisOkReponse;
     const bisValues = body?.bis;
     expect(bisValues?.length).to.eq(Number(params!.amount));

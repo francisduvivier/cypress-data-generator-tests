@@ -1,7 +1,7 @@
-import { BisParams } from './support-types';
+import { BisParamName } from './support-types';
 
 export function xPathForInputInForm(
-  paramName: keyof NonNullable<BisParams>,
+  paramName: BisParamName,
   inputType: string,
   generatorId: string,
   choice?: boolean
@@ -10,8 +10,9 @@ export function xPathForInputInForm(
   return `//form[contains(., "${paramName}")]//input[@type="${inputType}" and starts-with(@id, "/${generatorId}")${valuePart}]`;
   //div[contains(@class, "form-floating") and contains(., "amount")]//input[@type="number" ]
 }
+
 export function xPathForInputInFormDiv(
-  paramName: keyof NonNullable<BisParams>,
+  paramName: BisParamName,
   inputType: string,
   generatorId: string,
   choice?: boolean
