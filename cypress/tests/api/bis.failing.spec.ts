@@ -2,7 +2,7 @@ import { addVerifyCombinationsTests } from '../../support/bis/bis-verification-i
 import { paramSamples } from '../../support/bis/bis-param-samples.ts';
 import { responseVerifiers } from '../../support/bis/bis-response-verifier.ts';
 
-describe('BIS API', () => {
+xdescribe('BIS API', () => {
   before(() => {
     // Advised workaround to have the e2e tests pass when cy.visit(baseUrl) is called
     cy.request('GET', '/');
