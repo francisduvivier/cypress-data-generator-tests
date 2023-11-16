@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-import-module-exports
 import dotenv from 'dotenv';
+// eslint-disable-next-line import/no-import-module-exports
 import { defineConfig } from 'cypress';
 
 dotenv.config({ path: '.env.local' });
@@ -10,9 +12,8 @@ module.exports = defineConfig({
     runMode: 2,
   },
   env: {
-    apiUrl: 'http://ny652h2ixk.execute-api.eu-west-1.amazonaws.com',
+    apiUrl: 'http://127.0.0.1:3001',
     coverage: false,
-    paginationPageSize: process.env.PAGINATION_PAGE_SIZE,
   },
   e2e: {
     baseUrl: 'https://d2r3v7evrrggno.cloudfront.net',

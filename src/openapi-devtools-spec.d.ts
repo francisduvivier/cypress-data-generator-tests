@@ -416,8 +416,8 @@ export interface paths {
     get: {
       parameters: {
         query?: {
-          isGenderKnown?: string;
-          isBirthdateKnown?: string;
+          isGenderKnown?: boolean;
+          isBirthdateKnown?: boolean;
           date?: string;
           amount?: number;
         };
