@@ -22,10 +22,14 @@ export function addVerifyCombinationsTests(
     response: Cypress.Response<BisOkReponse>
   ) => void
 ) {
-  for (const amount of amounts) {
-    for (const isGenderKnown of isGenderKnowns) {
-      for (const isBirthdateKnown of isBirthdateKnowns) {
-        for (const date of dates) {
+  for (const isBirthdateKnown of isBirthdateKnowns) {
+    for (const date of dates) {
+      if (!!date !== !!isBirthdateKnown) {
+        // if isBirthdateKnown then there should be a date and vice versa
+        continue;
+      }
+      for (const amount of amounts) {
+        for (const isGenderKnown of isGenderKnowns) {
           const params = new URLSearchParams();
           if (date !== undefined) {
             params.set(paramSamples.date.name, String(date));
