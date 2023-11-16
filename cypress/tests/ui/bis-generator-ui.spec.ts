@@ -66,14 +66,18 @@ describe('Bis Id UI Test Suite', () => {
       // TODO implement
     });
     it('Should be able to find the generate button', () => {
-      // TODO implement
+      const buttonSelector = '#\\/' + generatorId + '-generate-button';
+      cy.get(buttonSelector).should('be.visible');
+      cy.get(buttonSelector).click();
+      const textSelector = '#' + generatorId + '-text';
+      cy.get(textSelector).should('be.visible');
+      cy.get(textSelector).should('not.be.empty');
     });
   });
   context('API interaction test suite', () => {
-    // TODO implement
-    // TODO for okValues amount
-    // TODO for okValues of date
-    // TODO for okValues of isBirthdateKnown
-    // TODO for okValues of isGenderKnown
+    // TODO implement for okValues amount
+    // TODO implement for okValues of date
+    // TODO implement for okValues of isBirthdateKnown
+    // TODO implement for okValues of isGenderKnown
   });
 });
