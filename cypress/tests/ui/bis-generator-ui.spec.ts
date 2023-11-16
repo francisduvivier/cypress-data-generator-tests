@@ -110,9 +110,11 @@ function setValuesAndVerifyGenerate(paramsValues: NonNullable<BisParams>) {
       .then((updatedTextItem) => {
         const endOutput = updatedTextItem.text();
         expect(startOutputValue).not.to.eq(endOutput);
-        expect(endOutput.split('\n')).to.have.length(
-          Number(paramsValues.amount)
-        );
+        const bisNumbers = endOutput.split('\n');
+        expect(bisNumbers).to.have.length(Number(paramsValues.amount));
+        // responseVerifiers.okVerifier(paramsValues, {
+        //   body: { bis: bisNumbers },
+        // }); TODO Fix responseVerifiers.okVerifier usage here
       });
   });
 
