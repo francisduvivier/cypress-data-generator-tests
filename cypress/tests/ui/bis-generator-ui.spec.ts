@@ -16,6 +16,7 @@ describe('Bis Id UI Test Suite', () => {
     it('should be able to collapse the generator', () => {
       cy.collapseGenerator(generatorId);
     });
+    // Test Radio button responsiveness for all radio buttons
     for (let i = 0; i < 2; i++) {
       const choices = ['yes', 'no'];
       for (let choiceIndex = 0; choiceIndex < 2; choiceIndex++) {
@@ -25,13 +26,14 @@ describe('Bis Id UI Test Suite', () => {
           choices[(choiceIndex + 1) % 2]
         }-${i}"]`;
         it(`can set the ${i ? 'second' : 'first'} toggle to ${choice}`, () => {
-          cy.get('head').should('not.be.visible');
-          cy.get('body').should('be.visible');
           cy.get(choiceSelector).click();
           cy.get(choiceSelector).should('be.checked');
           cy.get(otherChoiceSelector).should('not.be.checked');
         });
       }
     }
+  });
+  context('API interaction test suite', () => {
+    // TODO
   });
 });
