@@ -4,23 +4,18 @@ import {
   xPathForInputInForm,
   xPathForInputInFormDiv,
 } from '../../support/ui-utils.ts';
+import { BisParamName } from '../../support/support-types';
 
 const { baseUrl } = Cypress.config();
 const generatorId = 'bis';
 
 // TODO Move setBooleanParam to commands
 function setBooleanParam(
-  booleanParam:
-    | {
-        nokValues: readonly [number, string];
-        name: 'isBirthdateKnown';
-        okValues: readonly [boolean, boolean];
-      }
-    | {
-        nokValues: readonly [number, string];
-        name: 'isGenderKnown';
-        okValues: readonly [boolean, boolean];
-      },
+  booleanParam: {
+    nokValues: readonly [number, string];
+    name: BisParamName;
+    okValues: readonly [boolean, boolean];
+  },
   choice: boolean
 ) {
   const paramName = booleanParam.name;
@@ -48,7 +43,7 @@ function setBooleanParam(
 }
 
 // TODO Move setAmount to commands
-function setAmount(value: 1) {
+function setAmount(value: number) {
   cy.xpath(
     xPathForInputInFormDiv(paramSamples.amount.name, 'number', generatorId)
   ).should('be.visible');
